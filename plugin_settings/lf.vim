@@ -1,0 +1,1 @@
+nnoremap R :Lf<CR>
