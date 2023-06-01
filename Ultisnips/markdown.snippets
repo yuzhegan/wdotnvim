@@ -9,14 +9,37 @@ snippet tr "Table Row"
 ${0}
 endsnippet
 
-snippet mp "brain mappings" 
-@startuml 
-@startmindmap 
-+[#ccffcc] ${1:Term}
 
+snippet mp "Markdown barainmap"
+
+@startuml !theme spacelab
+@startmindmap
+
++[#ccffcc] ${1:mainBranch}
 
 @endmindmap 
 @enduml
+
 endsnippet
 
+snippet author "Author"
+---
+title: 换药记之多角度思考
+date: `date "+%Y-%m-%d %H:%M:%S"`
+tags: ${1:amazon}
+---
+endsnippet
+
+
+snippet dates "Dates"
+`date "+%Y-%m-%d %H:%M:%S"`
+endsnippet
+
+snippet date "Date"
+`date "+%Y-%m-%d"`
+endsnippet
+
+snippet time "Time"
+`date "+%H:%M:%S"`
+endsnippet
 

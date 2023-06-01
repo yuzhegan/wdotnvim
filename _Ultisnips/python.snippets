@@ -1,5 +1,5 @@
-snippet st "print"
-print(${0:}.schema)
+snippet ic "print"
+ic(${0:}.schema)
 endsnippet
 
 snippet plv "pl read_csv"
@@ -32,7 +32,7 @@ endsnippet
 
 snippet plt "pl pivot_table"
 ${1:df}.pivot(index=${2:['${3:None}']},columns=${4:['${5:None}']},
-				${6:values='${7:None}',aggregate_function=${8:'sum'}},)
+				${6:values='${7:None}',aggregate_fn=${8:'sum'}},)
 endsnippet
 
 snippet plk "pl lookup"
@@ -47,41 +47,9 @@ snippet te "pl write_excel"
 ${1:df}.to_pandas().to_excel('${2:file_name}.xlsx',${3:sheet_name='${4:None}'},${5:index=${6:False}})
 endsnippet
 
-
-snippet plte "pl write_excel"
-from xlsxwriter import Workbook
-with Workbook("${1:output.xlsx}") as wb:  
-			sheet_names = [${2:"data", "data2}"]
-			for item in sheet_names:
-					wb.add_worksheet(item)
-			${3:df}.write_excel(
-			workbook=wb,
-			worksheet=${4:sheet_names[0]},
-			# position=(3, 1),  # specify position as (row,col) coordinates
-			# conditional_formats={"num": "3_color_scale", "val": "data_bar"},
-			# table_style="Table Style Medium 4",
-							autofit=True,
-	)
-			${5:df}.write_excel(
-			workbook=wb,
-			worksheet=${6:sheet_names[1]},
-			# position=(len(df) + 7, 1),
-			# table_style={
-			#     "style": "Table Style Light 4",
-			#     "first_column": True,
-			# },
-			# column_formats={"num": "#,##0.000;[White]-#,##0.000"},
-			# column_widths={"val": 125},
-			autofit=True,
-	)
-
-
-
-endsnippet
-
-
 snippet tq "pl to sql"
-pd.io.sql.to_sql(${1:df}.to_pandas(), '${2:广告业绩}', con=${3:conn}, schema='${4:search term}', if_exists='${5:append}',index=False)
+pd.io.sql.to_sql(${1:df}.to_pandas(), '${2:广告业绩}', con=${3:conn}, schema='${4:search term}', if_exists='${5:append}',
+                     index=False)
 conn.dispose()
 
 endsnippet
@@ -114,7 +82,7 @@ ${1:df}.groupby(['${2:col_name_1}', '${3:col_name_2}']).agg([pl.col('${4:col_n}'
 pl.col('${6:col_n}').${7:sum()},
 pl.col('${8:col_n}').${9:sum()},
 pl.col('${9:col_n}').${10:sum()},
-]).${11:sort(${11:by='${13:col_name}'}}, ${14:descending=${15:True}})
+]).${11:sort(${11:by='${13:col_name}'}}, ${14:reverse=${15:True}})
 endsnippet
 
 snippet plf "pl filter"
@@ -281,37 +249,3 @@ class ${1:ReadSheet}:
         ${21:pass}
         return
 endsnippet
-
-
-snippet plrow "pl row for loop"
-for ${1:row} in ${2:df}.rows:
-		${3:print(row)}
-		${4:df2} = pl.DataFrame({[${5:row}], columns=[${6:df}.schema]})
-		${7:df2} = pl.concat([${8:df2}, ${9:df}])
-
-endsnippet
-
-snippet pldh "pl drop empty rows"
-${1:df}.filter(
-    ~pl.fold(
-        acc=True,
-        f=lambda acc, s: acc & s.is_null(),
-        exprs=pl.all(),
-    )
-)
-endsnippet
-
-snippet pldv "pl drop empty columns"
-${1:df}[[s.name for s in df if not (s.null_count() == df.height)]]
-endsnippet
-
-snippet reg "re to set group name"
-(?P<${2:group_name}>${3:.*?})
-endsnippet
-
-snippet rec "re to set compile"
-	re.compile(r"${1}${2:.*?}${3}")
-endsnippet
-
-
-
