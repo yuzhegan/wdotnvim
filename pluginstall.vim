@@ -80,7 +80,11 @@ call dein#add('cohama/agit.vim', {'lazy': 1, 'on_event': 'BufRead'})
 call dein#add('kdheepak/lazygit.nvim', {'lazy': 1 })
 
 " markdown
-call dein#add('iamcco/markdown-preview.nvim', {'build': 'cd app && yarn install', 'lazy': 1, 'on_ft': 'markdown'})
+" call dein#add('iamcco/markdown-preview.nvim', {'build': 'cd app && yarn install', 'lazy': 1, 'on_ft': 'markdown'})
+call dein#add('iamcco/markdown-preview.nvim', {
+    \ 'on_ft': 'markdown',
+    \ 'build': 'cd app && yarn install'
+    \})
 call dein#add('dhruvasagar/vim-table-mode', {'on': 'TableModeToggle', 'on_ft': ['text', 'markdown', 'vim-plug']})
 call dein#add('mzlogin/vim-markdown-toc', {'on_ft': ['gitignore', 'markdown', 'vim-plug'], 'lazy': 1})
 call dein#add('kevinhwang91/nvim-hlslens')
