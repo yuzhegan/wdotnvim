@@ -14,6 +14,8 @@ let &runtimepath = &runtimepath.','.s:dein_path.'/repos/github.com/Shougo/dein.v
 
 call dein#begin(s:dein_path)
 
+call dein#add('haya14busa/dein-command.vim', {'lazy': 1, 'on_cmd': 'Dein'})
+
 "wsl copy
 call dein#add('christianfosli/wsl-copy', { 'rev': 'f1036eb9', 'lazy': 1 })
 
@@ -23,11 +25,12 @@ call dein#add('gboncoffee/lf.vim', {'lazy': 1})
 " commend
 call dein#add('gelguy/wilder.nvim', {'on_path': '*', 'hook_post_update': 'UpdateRemotePlugins'})
 
-call dein#add('haya14busa/dein-command.vim', {'lazy': 1, 'on_cmd': 'Dein'})
-
 "python
 call dein#add('wookayin/vim-autoimport', {'on_ft': 'python', 'lazy': 1})
 call dein#add('yssl/AutoCWD.vim', {'lazy': 1})
+call dein#add('yuzhegan/magma', { 'do': ':UpdateRemotePlugins' })
+call dein#add('edluffy/hologram.nvim')
+
 
 " Auto Complete
 call dein#add('neoclide/coc.nvim', {'commit': '63dd239bfe02998810b39d039827e2510885b57b', 'build': 'yarn install --frozen-lockfile', 'lazy':1, 'on_event':'InsertEnter'})
@@ -48,6 +51,7 @@ call dein#add('voldikss/vim-translator', {'on_event': 'VimEnter', 'lazy':1})
 
 "input method
 " call dein#add('lilydjwg/fcitx.vim', {'on_event': 'InsertEnter', 'lazy': 1})
+call dein#add('vim-scripts/fcitx.vim', {'on_event': 'InsertEnter', 'lazy': 1})
 
 "python jupyter tumnx
 call dein#add('jpalardy/vim-slime', {'on': 'RemotePlugin', 'on_ft': 'python', 'lazy': 1})
@@ -104,8 +108,6 @@ call dein#add('Yggdroot/indentLine', {'on_ft': ['python'], 'lazy': 1})
 call dein#add('nvim-lua/plenary.nvim')
 " call dein#add('nvim-pack/nvim-spectre')
 call dein#add('nvim-pack/nvim-spectre', {
-  \ 'on_cmd': 'Spectre',
-  \ 'depends': 'plenary.nvim'
 \ })
 
 
